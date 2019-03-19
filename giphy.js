@@ -1,17 +1,17 @@
 $(document).ready(function () {
-    // my starting movies
-    var movies = ["Deadpool", "Star Wars", "Avengers", "Major League", "Harry Potter", "How To Train Your Dragon"];
+    // my starting videoGames
+    var videoGames = ["Madden", "NBA 2k", "Call of Duty Black Opps", "Fortnite", "Halo", "Sonic The Hedgehog", "Minecraft", "Super Smash Bros"];
 
 
 
 
 
     // function to create a still giph from button click
-    function displayMovieInfo() {
+    function displayvideoGameInfo() {
         // Grabbing and storing the ID from the button
         var film = $(this).attr("id");
 
-        // Constructing a queryURL using the movie name
+        // Constructing a queryURL using the videoGame name
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             film + "&api_key=dc6zaTOxFJmzC&limit=10&";
 
@@ -29,27 +29,26 @@ $(document).ready(function () {
                 for (var i = 0; i < results.length; i++) {
 
                     // Creating and storing a div tag
-                    var movieDiv = $("<div>");
-
-                    // Creating a paragraph tag with the result item's rating
-                    var movieimageRating = $("<p>").text("Rating: " + results[i].rating);
-
+                    var videoGameDiv = $("<div>");
+                    videoGameDiv. attr("class", "new-entry")
                     // Creating and storing an image tag
-                    var movieImage = $("<img>");
+                    var videoGameImage = $("<img>");
                     // Setting the src attribute of the image to a property pulled off the result item
-                    movieImage.attr("src", results[i].images.original_still.url);
-                    movieImage.attr("data-still", results[i].images.original_still.url)
-                    movieImage.attr("data-animate", results[i].images.original.url)
-                    movieImage.attr("class", "gif")
-                    movieImage.attr("data-state", "still");
+                    videoGameImage.attr("src", results[i].images.original_still.url);
+                    videoGameImage.attr("data-still", results[i].images.original_still.url)
+                    videoGameImage.attr("data-animate", results[i].images.original.url)
+                    videoGameImage.attr("class", "gif")
+                    videoGameImage.attr("data-state", "still");
+                    // Creating a paragraph tag with the result item's rating
+                    var videoGameimageRating = $("<p>").text("Rating: " + results[i].rating);
 
-                    // Appending the paragraph and image tag to the movieDiv
-                    movieDiv.append(movieimageRating);
-                    movieDiv.append(movieImage);
+                    // Appending the paragraph and image tag to the videoGameDiv
+                    videoGameDiv.append(videoGameimageRating);
+                    videoGameDiv.append(videoGameImage);
 
-                    // Prependng the movieDiv to the HTML page in the "#gifs-appear-here" div
-                    $("#gifs-appear-here").prepend(movieDiv);
-
+                    // Prependng the videoGameDiv to the HTML page in the "#gifs-appear-here" div
+                    $("#gifs-appear-here").prepend(videoGameDiv);
+                    
                 }
 
                 // function to animate and stop the giphys
@@ -72,41 +71,41 @@ $(document).ready(function () {
         }
         
     };
-    // creates the buttons for the movies to appear on the screen
-    function createMovies() {
-        $("#movie-button-display").empty();
-        // for loop to run through movie array and make buttons
-        for (var i = 0; i < movies.length; i++) {
-            var movieButtons = $("<button>");
-            movieButtons.text(movies[i]);
+    // creates the buttons for the videoGames to appear on the screen
+    function createvideoGames() {
+        $("#videoGame-button-display").empty();
+        // for loop to run through videoGame array and make buttons
+        for (var i = 0; i < videoGames.length; i++) {
+            var videoGameButtons = $("<button>");
+            videoGameButtons.text(videoGames[i]);
             // gives the new button an ID equal to the index string of the array
-            movieButtons.attr("id", movies[i]);
-            movieButtons.attr("class", "allMovieButtons")
-            $("#movie-button-display").append(movieButtons);
+            videoGameButtons.attr("id", videoGames[i]);
+            videoGameButtons.attr("class", "allvideoGameButtons")
+            $("#videoGame-button-display").append(videoGameButtons);
         }
 
     }
 function reset(){
     $("#gifs-appear-here").empty();
 }
-    // function for the user to type in a movie and add it to the movies array
-    $("#add-movie").on("click", function () {
+    // function for the user to type in a videoGame and add it to the videoGames array
+    $("#add-videoGame").on("click", function () {
         // keeps the items on the screen and not do its default coding which is to get ride of the buttons
         event.preventDefault();
         // // // getting the vaule from what the user typed
-        var addMovie = $("#newMovie").val().trim();
-        // // // takes the value that we got from the user and pushes it into the movies array so a button can be created
-        movies.push(addMovie);
+        var addvideoGame = $("#newvideoGame").val().trim();
+        // // // takes the value that we got from the user and pushes it into the videoGames array so a button can be created
+        videoGames.push(addvideoGame);
         // // // run our button function so that the new button can be seen
-        createMovies();
+        createvideoGames();
         // // clear the text un the imput box
-        $("#newMovie").val("");
+        $("#newvideoGame").val("");
 
     });
-    $(document).on("click", ".allMovieButtons", displayMovieInfo);
+    $(document).on("click", ".allvideoGameButtons", displayvideoGameInfo);
     $(document).on("click", ".gif", gifsAnimate);
     $(document).on("click", "#reset", reset);
-    createMovies();
+    createvideoGames();
 
 
 });

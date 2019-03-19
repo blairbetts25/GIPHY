@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+  }
+  body{
+      background-image: url(https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif)
+  }
+.new-entry{
+    float: left;
+    padding:10px;
+    border: black 2px solid;
+    margin:10px;
+}
+.gif{
+    height: 200px;
+    width: 300px;
+    min-width: 25%;
+    min-inline-size: 40%;
+    
+}
+p{
+    padding:0px;
+    margin:0px;
+}
+.container{
+    width: 80%;
+}
+#gifs-appear-here{
+    background: white;
+}
+h1,h2,span{
+    color:white;
+}
+button{
+    margin: 2px;
+    background: red;
+    border: red 2px solid;
+    color:white;
+}
